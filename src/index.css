@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+.light {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.dark {
+  background: #020617;
+  color: white;
+}
