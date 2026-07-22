@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { navLinks } from "../../data/navigation";
 import ThemeToggle from "../ui/ThemeToggle";
 
@@ -14,96 +16,98 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
 
+  const navigate = useNavigate();
 
-  // Smooth scrolling
+  const location = useLocation();
+
+
+
+  // Navigation Logic
 
   const scrollToSection = (href) => {
-
-    const section = document.querySelector(href);
-
-
-    if(section){
-
-      section.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-    }
 
 
     setOpen(false);
 
-  };
+
+
+    // For section based scrolling
+
+    if(href.startsWith("#")){
+
+
+      const section = document.querySelector(href);
 
 
 
+      if(section){
 
+        section.scrollIntoView({
 
-  // Scroll spy
+          behavior:"smooth",
 
- 
-useEffect(() => {
+          block:"start"
 
-  const handleScroll = () => {
-
-    const scrollPosition = window.scrollY + 200;
-
-
-    let currentSection = "home";
-
-
-    navLinks.forEach((link) => {
-
-      const section = document.querySelector(link.href);
-
-
-      if (section) {
-
-        const sectionTop = section.offsetTop;
-
-        const sectionHeight = section.offsetHeight;
-
-
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-
-          currentSection = link.href.replace("#", "");
-
-        }
+        });
 
       }
 
-    });
+
+      return;
+
+    }
 
 
-    setActiveSection(currentSection);
+
+    // For React Router pages
+
+    navigate(href);
+
 
   };
 
 
-  window.addEventListener(
-    "scroll",
-    handleScroll
-  );
 
 
-  handleScroll();
 
 
-  return () => {
+  // Active Navigation Logic
 
-    window.removeEventListener(
-      "scroll",
-      handleScroll
+  useEffect(()=>{
+
+
+    const currentPath = location.pathname;
+
+
+
+    const currentLink = navLinks.find(
+
+      (link)=>link.href === currentPath
+
     );
 
-  };
 
 
-}, []);
+    if(currentLink){
+
+      setActiveSection(
+        currentLink.name.toLowerCase()
+      );
+
+    }
+
+    else{
+
+      setActiveSection("home");
+
+    }
+
+
+
+  },[location.pathname]);
+
+
+
 
 
 
@@ -126,54 +130,62 @@ transition={{
 }}
 
 className="
+
 fixed
+
 top-0
+
 left-0
 
 z-50
 
 w-full
 
-px-6
-lg:px-20
+px-0
 
-py-4
+lg:px-0
 
-bg-linear-to-b
+py-0 
 
-from-white/30
+
+bg-gradient-to-b
+
+from-black/40
+
 to-transparent
 
-dark:from-slate-900/30
 
 backdrop-blur-xl
-
 
 "
 
 >
+
 
 <div
 
 className="
 
 max-w-7xl
+
 mx-auto
 
 
 flex
+
 items-center
+
 justify-between
 
 
 px-6
+
 py-3
 
 
-rounded-2xl
-
 
 backdrop-blur-xl
+
 
 
 bg-white/60
@@ -181,27 +193,53 @@ bg-white/60
 dark:bg-slate-900/60
 
 
+
 border
 
-border-gray-200
+border-white/30
 
 dark:border-slate-700
+
 
 
 shadow-lg
 
 "
 
-
 >
 
 
-{/* Logo */}
+{/* LOGO */}
 
 
 <button
 
-onClick={()=>scrollToSection("#home")}
+onClick={()=>scrollToSection("/")}
+
+className="
+
+text-left
+
+text-slate-900
+
+dark:text-white
+
+"
+
+>
+
+
+<div
+
+className="
+
+leading-tight
+
+"
+
+>
+
+<span
 
 className="
 
@@ -209,8 +247,28 @@ text-2xl
 
 font-bold
 
-tracking-wide
+tracking-[0.15em]
 
+"
+
+>
+
+APOLLO
+
+</span>
+
+
+<span
+
+className="
+
+block
+
+text-xs
+
+uppercase
+
+tracking-[0.35em]
 
 text-blue-600
 
@@ -220,7 +278,13 @@ dark:text-blue-400
 
 >
 
-Agmuasie
+Travel Agency
+
+</span>
+
+
+</div>
+
 
 </button>
 
@@ -228,9 +292,7 @@ Agmuasie
 
 
 
-
-{/* Desktop Menu */}
-
+{/* DESKTOP MENU */}
 
 
 <nav
@@ -243,7 +305,7 @@ md:flex
 
 items-center
 
-gap-8
+gap-7
 
 "
 
@@ -257,22 +319,24 @@ navLinks.map((link)=>(
 
 <button
 
-
 key={link.name}
-
 
 onClick={()=>scrollToSection(link.href)}
 
 
-
 className={`
+
 relative
+
 group
 
 transition
 
+font-medium
+
+
 ${
-activeSection === link.href.replace("#","")
+activeSection === link.name.toLowerCase()
 
 ?
 
@@ -280,14 +344,14 @@ activeSection === link.href.replace("#","")
 
 :
 
-"text-gray-700 dark:text-gray-200"
+"text-slate-700 dark:text-slate-200"
 
 }
+
 
 hover:text-blue-500
 
 `}
-
 
 >
 
@@ -299,26 +363,25 @@ hover:text-blue-500
 <span
 
 className={`
+
 absolute
 
 left-0
 
 -bottom-1
 
-
 h-0.5
 
-
 bg-blue-500
-
 
 transition-all
 
 duration-300
 
 
+
 ${
-activeSection === link.href.replace("#","")
+activeSection === link.name.toLowerCase()
 
 ?
 
@@ -330,11 +393,10 @@ activeSection === link.href.replace("#","")
 
 }
 
+
 `}
 
-
 />
-
 
 
 </button>
@@ -344,6 +406,54 @@ activeSection === link.href.replace("#","")
 
 
 }
+
+
+
+{/* BOOK NOW BUTTON */}
+
+
+<a
+
+href="/contact"
+
+onClick={()=>setOpen(false)}
+
+className="
+
+ml-3
+
+px-5
+
+py-2.5
+
+
+rounded-full
+
+
+bg-blue-600
+
+
+text-white
+
+
+font-semibold
+
+
+hover:bg-blue-700
+
+
+transition
+
+
+shadow-md
+
+"
+
+>
+
+Book Now
+
+</a>
 
 
 
@@ -358,8 +468,7 @@ activeSection === link.href.replace("#","")
 
 
 
-{/* Mobile Controls */}
-
+{/* MOBILE CONTROLS */}
 
 
 <div
@@ -394,11 +503,9 @@ className="
 
 text-2xl
 
-
-text-gray-700
+text-slate-700
 
 dark:text-white
-
 
 "
 
@@ -427,8 +534,6 @@ open
 
 
 
-
-
 </div>
 
 
@@ -437,9 +542,7 @@ open
 
 
 
-
-{/* Mobile Menu */}
-
+{/* MOBILE MENU */}
 
 
 <AnimatePresence>
@@ -489,6 +592,7 @@ duration:0.25
 
 className="
 
+
 md:hidden
 
 
@@ -499,7 +603,6 @@ mx-auto
 
 
 max-w-7xl
-
 
 
 rounded-2xl
@@ -513,9 +616,9 @@ backdrop-blur-xl
 
 
 
-bg-white/80
+bg-white/90
 
-dark:bg-slate-900/80
+dark:bg-slate-900/90
 
 
 
@@ -528,6 +631,7 @@ dark:border-slate-700
 
 
 shadow-xl
+
 
 "
 
@@ -555,7 +659,6 @@ p-6
 
 {
 
-
 navLinks.map((link)=>(
 
 
@@ -568,8 +671,8 @@ key={link.name}
 onClick={()=>scrollToSection(link.href)}
 
 
-
 className={`
+
 text-left
 
 text-lg
@@ -578,8 +681,9 @@ text-lg
 transition
 
 
+
 ${
-activeSection === link.href.replace("#","")
+activeSection === link.name.toLowerCase()
 
 ?
 
@@ -592,10 +696,11 @@ activeSection === link.href.replace("#","")
 }
 
 
+
 hover:text-blue-500
 
-`}
 
+`}
 
 
 >
@@ -607,11 +712,40 @@ hover:text-blue-500
 </button>
 
 
-
 ))
 
 
 }
+
+
+
+
+
+<button
+
+onClick={()=>scrollToSection("/contact")}
+
+className="
+
+mt-3
+
+rounded-full
+
+bg-blue-600
+
+py-3
+
+text-white
+
+font-semibold
+
+"
+
+>
+
+Book Your Trip
+
+</button>
 
 
 
@@ -629,6 +763,7 @@ hover:text-blue-500
 
 
 </AnimatePresence>
+
 
 
 

@@ -1,19 +1,51 @@
 import { motion } from "framer-motion";
-import RoleSwitcher from "../ui/RoleSwitcher";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaYoutube
-} from "react-icons/fa";
 
 import {
-  FiDownload
+  FiArrowRight,
 } from "react-icons/fi";
 
-import portfolio from "../../assets/images/portfolio.webp";
+import {
+  FaPlaneDeparture,
+  FaHotel,
+  FaCar,
+  FaBuilding,
+} from "react-icons/fa";
+
+import heroImage from "../../assets/images/hero.jpg";
 
 
-function Hero(){
+function Hero() {
+
+
+const services = [
+
+{
+icon:<FaPlaneDeparture />,
+title:"Airline",
+subtitle:"Ticketing"
+},
+
+{
+icon:<FaHotel />,
+title:"Hotels",
+subtitle:"Reservations"
+},
+
+{
+icon:<FaCar />,
+title:"Car",
+subtitle:"Rentals"
+},
+
+{
+icon:<FaBuilding />,
+title:"Corporate",
+subtitle:"Travel"
+}
+
+];
+
+
 
 return (
 
@@ -21,42 +53,106 @@ return (
 id="home"
 
 className="
+relative
 min-h-screen
-
-flex
-items-center
-
-px-6
-lg:px-24
-
-pt-24
-
-bg-white
-dark:bg-slate-950
-
-transition-colors
-duration-500
-
+overflow-hidden
 "
 
 >
+
+
+{/* Background Image */}
+
+<img
+
+src={heroImage}
+
+alt="
+Apollo Travel Agency helping travelers explore destinations worldwide
+"
+
+className="
+absolute
+inset-0
+w-full
+h-full
+object-cover
+object-center
+"
+
+/>
+
+
+
+{/* Premium Gradient Overlay */}
+
+<div
+
+className="
+absolute
+inset-0
+
+bg-gradient-to-r
+
+from-slate-950/95
+
+via-slate-900/70
+
+via-50%
+
+to-transparent
+
+"
+
+/>
+
+
+
+
+{/* Soft Dark Layer */}
+
+<div
+
+className="
+absolute
+inset-0
+
+bg-black/20
+
+dark:bg-slate-900/40
+
+"
+
+/>
+
+
+
+
+
+{/* Content */}
 
 
 <div
 
 className="
+relative
+z-10
+
 max-w-7xl
+
 mx-auto
 
-w-full
+min-h-screen
 
-grid
-
-lg:grid-cols-2
-
-gap-12
+flex
 
 items-center
+
+px-6
+
+lg:px-24
+
+pt-24
 
 "
 
@@ -64,145 +160,311 @@ items-center
 
 
 
-{/* TEXT CONTENT */}
-
 <motion.div
+
 
 initial={{
 opacity:0,
 x:-50
 }}
 
+
 animate={{
 opacity:1,
 x:0
 }}
 
+
 transition={{
 duration:0.8
 }}
 
+
+className="
+max-w-xl
+"
+
 >
 
 
-<p
+
+
+{/* Badge */}
+
+
+<motion.div
+
+
+initial={{
+opacity:0,
+y:20
+}}
+
+
+animate={{
+opacity:1,
+y:0
+}}
+
+
+transition={{
+delay:0.2
+}}
+
 
 className="
-text-blue-600
-dark:text-blue-400
+inline-flex
+items-center
 
-text-lg
+rounded-full
+
+border
+
+border-white/20
+
+bg-white/10
+
+backdrop-blur-md
+
+px-5
+
+py-2
+
+text-sm
 
 font-medium
 
-mb-4
+text-white
 
 "
 
 >
 
-Hello, I'm
 
-</p>
-
+Trusted Travel Partner Since 2019
 
 
-<h1
-
-className="
-
-text-4xl
-
-sm:text-5xl
-
-lg:text-6xl
-
-font-extrabold
-
-leading-tight
-
-text-gray-900
-
-dark:text-white
-
-"
-
->
-
-Agmuasie
-
-<span
-
-className="
-text-blue-600
-dark:text-blue-400
-"
-
->
-
- Belay
-
-</span>
-
-
-</h1>
+</motion.div>
 
 
 
 
-<div className="mt-5">
 
-<RoleSwitcher />
 
-</div>
+{/* Heading */}
 
 
 
+<motion.h1
 
-<p
+
+initial={{
+opacity:0,
+y:25
+}}
+
+
+animate={{
+opacity:1,
+y:0
+}}
+
+
+transition={{
+delay:0.35
+}}
+
 
 className="
 
 mt-6
 
-max-w-xl
+text-5xl
 
-text-lg
+md:text-6xl
 
-leading-relaxed
+lg:text-7xl
 
-text-gray-600
+font-bold
 
-dark:text-gray-400
+leading-tight
+
+text-white
 
 "
 
 >
 
-I design intelligent systems, modern web applications,
-and educational technologies by combining artificial
-intelligence, software engineering, and engineering
-principles.
 
-</p>
+Discover the World
 
 
+<br/>
 
 
-
-{/* BUTTONS */}
-
-
-<div
+<span
 
 className="
+text-blue-400
+"
+
+>
+
+with Confidence
+
+</span>
+
+
+
+</motion.h1>
+
+
+
+
+
+
+
+{/* Service line */}
+
+
+
+<motion.h2
+
+
+initial={{
+opacity:0,
+y:20
+}}
+
+
+animate={{
+opacity:1,
+y:0
+}}
+
+
+transition={{
+delay:0.45
+}}
+
+
+
+className="
+
+mt-4
+
+text-xl
+
+text-blue-100
+
+font-medium
+
+"
+
+>
+
+
+Airline Ticketing • Hotel Reservations • Car Rentals
+
+
+</motion.h2>
+
+
+
+
+
+
+
+{/* Description */}
+
+
+
+<motion.p
+
+
+initial={{
+opacity:0,
+y:20
+}}
+
+
+animate={{
+opacity:1,
+y:0
+}}
+
+
+transition={{
+delay:0.55
+}}
+
+
+className="
+
+mt-6
+
+text-sm
+
+md:text-lg
+
+leading-relaxed
+
+text-slate-300
+
+"
+
+>
+
+
+Whether you're planning a family vacation,
+a business trip, or your next adventure,
+Apollo Travel Agency delivers reliable travel
+solutions with exceptional customer service,
+competitive pricing, and personalized support.
+
+
+</motion.p>
+
+
+
+
+
+
+
+
+{/* Buttons */}
+
+
+
+<motion.div
+
+
+initial={{
+opacity:0,
+y:20
+}}
+
+
+animate={{
+opacity:1,
+y:0
+}}
+
+
+transition={{
+delay:0.65
+}}
+
+
+className="
+
+mt-10
+
 flex
 
 flex-wrap
 
 gap-4
-
-mt-8
 
 "
 
@@ -211,9 +473,7 @@ mt-8
 
 <a
 
-href="/Agmuasie_CV.pdf"
-
-download
+href="#contact"
 
 className="
 
@@ -223,17 +483,17 @@ items-center
 
 gap-2
 
-px-6
-
-py-3
-
 rounded-full
 
 bg-blue-600
 
-text-white
+px-7
+
+py-4
 
 font-semibold
+
+text-white
 
 hover:bg-blue-700
 
@@ -243,9 +503,9 @@ transition
 
 >
 
-<FiDownload/>
+Plan Your Journey
 
-Download CV
+<FiArrowRight/>
 
 </a>
 
@@ -255,27 +515,31 @@ Download CV
 
 <a
 
-href="#contact"
+href="#services"
 
 className="
 
-px-6
+inline-flex
 
-py-3
+items-center
 
 rounded-full
 
 border
 
-border-blue-600
+border-white/30
 
-text-blue-600
+bg-white/10
 
-dark:text-blue-400
+backdrop-blur-md
 
-hover:bg-blue-600
+px-7
 
-hover:text-white
+py-4
+
+text-white
+
+hover:bg-white/20
 
 transition
 
@@ -283,9 +547,150 @@ transition
 
 >
 
-Contact Me
+Explore Services
+
 
 </a>
+
+
+
+</motion.div>
+
+
+
+
+
+
+
+
+
+{/* Trust Indicators */}
+
+
+
+<motion.div
+
+
+initial={{
+opacity:0
+}}
+
+
+animate={{
+opacity:1
+}}
+
+
+transition={{
+delay:0.9
+}}
+
+
+
+className="
+
+mt-14
+
+grid
+
+grid-cols-2
+
+gap-5
+
+md:grid-cols-4
+
+"
+
+>
+
+
+{
+
+services.map((service,index)=>(
+
+
+<div
+
+key={index}
+
+className="
+flex
+items-center
+gap-3
+text-white
+"
+
+>
+
+
+<div
+
+className="
+text-blue-400
+text-xl
+"
+
+>
+
+{service.icon}
+
+</div>
+
+
+<div>
+
+<p
+
+className="
+font-semibold
+"
+
+>
+
+{service.title}
+
+</p>
+
+
+<p
+
+className="
+text-sm
+
+text-slate-300
+
+"
+
+>
+
+{service.subtitle}
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+))
+
+
+}
+
+
+
+</motion.div>
+
+
+
+
+
+</motion.div>
+
+
 
 
 
@@ -295,17 +700,37 @@ Contact Me
 
 
 
-{/* SOCIAL LINKS */}
 
-<div
+
+
+{/* Scroll Indicator */}
+
+
+
+<motion.div
+
+
+animate={{
+y:[0,10,0]
+}}
+
+
+transition={{
+duration:1.5,
+repeat:Infinity
+}}
+
 
 className="
+absolute
 
-flex
+bottom-8
 
-gap-6
+left-1/2
 
-mt-8
+-translate-x-1/2
+
+text-white/70
 
 text-2xl
 
@@ -313,220 +738,11 @@ text-2xl
 
 >
 
-
-<a
-
-href="https://github.com/Agmuasie-Belay"
-
-target="_blank"
-
-rel="noreferrer"
-
-className="
-
-text-gray-700
-
-dark:text-gray-300
-
-hover:text-blue-500
-
-transition
-
-"
-
->
-
-<FaGithub/>
-
-</a>
-
-
-
-
-
-<a
-
-href="https://linkedin.com/in/agmuasie-belay"
-
-target="_blank"
-
-rel="noreferrer"
-
-className="
-
-text-gray-700
-
-dark:text-gray-300
-
-hover:text-blue-500
-
-transition
-
-"
-
->
-
-<FaLinkedin/>
-
-</a>
-
-
-
-
-
-<a
-
-href="#"
-
-className="
-
-text-gray-700
-
-dark:text-gray-300
-
-hover:text-blue-500
-
-transition
-
-"
-
->
-
-<FaYoutube/>
-
-</a>
-
-
-
-</div>
-
-
-
+↓
 
 </motion.div>
 
 
-
-
-
-
-
-{/* IMAGE */}
-
-<motion.div
-
-
-initial={{
-opacity:0,
-scale:0.8
-}}
-
-animate={{
-opacity:1,
-scale:1
-}}
-
-transition={{
-duration:0.8
-}}
-
-
-className="
-
-flex
-
-justify-center
-
-"
-
->
-
-
-<div
-
-className="
-relative
-"
-
->
-
-
-<div
-
-className="
-
-absolute
-
-inset-0
-
-rounded-full
-
-bg-blue-500
-
-blur-3xl
-
-opacity-30
-
-animate-pulse
-
-"
-
-/>
-
-
-
-
-<img
-
-src={portfolio}
-
-alt="Agmuasie Belay"
-
-className="
-
-relative
-
-w-48
-
-h-48
-
-
-lg:w-64
-
-lg:h-64
-
-
-object-cover
-
-
-rounded-full
-
-
-border-4
-
-border-blue-500
-
-
-shadow-2xl
-
-
-"
-
->
-
-
-</img>
-
-
-</div>
-
-
-</motion.div>
-
-
-
-
-</div>
 
 
 </section>

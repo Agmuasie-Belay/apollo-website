@@ -21,3 +21,118 @@ body {
   background: #020617;
   color: white;
 }
+
+/* Navigation Buttons */
+.swiper {
+  --swiper-navigation-size: 40px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  width: 44px;
+  height: 44px;
+padding: .4rem;
+  border-radius: 9999px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(12px);
+
+  /* border: 1px solid rgba(255, 255, 255, 0.25); */
+
+  color: #050a16;
+
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: #c8d5f0;
+  color: white;
+  transform: scale(1.08);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+
+  background: #94a3b8;
+
+  opacity: 1;
+
+  transition: all 0.35s ease;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+
+  transition: 0.3s;
+}
+
+
+
+.swiper-pagination-bullet-active {
+  transform: scale(1.7);
+  background: #2563eb;
+}
+
+.destinations-swiper{
+    padding-bottom:60px;
+}
+
+.destinations-swiper .swiper-pagination{
+    bottom:0 !important;
+}
+
+.destinations-swiper .swiper-button-next,
+.destinations-swiper .swiper-button-prev{
+
+    width:46px;
+    height:46px;
+
+    border-radius:9999px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(12px);
+
+    color:white;
+
+    transition:.3s;
+}
+
+.destinations-swiper .swiper-button-next:hover,
+.destinations-swiper .swiper-button-prev:hover{
+
+    background:#2563eb;
+}
+
+.destinations-swiper .swiper-button-next::after,
+.destinations-swiper .swiper-button-prev::after{
+
+    font-size:18px;
+    font-weight:bold;
+}
+
+.destinations-swiper .swiper-pagination-bullet{
+
+    width:10px;
+    height:10px;
+
+    transition:.35s;
+}
+
+.destinations-swiper .swiper-pagination-bullet-active{
+
+    width:30px;
+
+    border-radius:999px;
+
+    background:#2563eb;
+}

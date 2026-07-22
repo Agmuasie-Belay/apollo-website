@@ -1,50 +1,65 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import {
-  FaGraduationCap,
+  FaPlaneDeparture,
   FaUsers,
-  FaCode,
-  FaRobot
+  FaGlobeAfrica,
+  FaStar,
 } from "react-icons/fa";
 
 import Counter from "../ui/Counter";
 
 
+// Statistics
+
 const achievements = [
 
 {
-icon:<FaGraduationCap/>,
-number:6,
+icon:<FaUsers />,
+number:1000,
 suffix:"+",
-title:"Years Teaching"
+title:"Happy Travelers"
 },
 
 {
-icon:<FaUsers/>,
-number:500,
+icon:<FaGlobeAfrica />,
+number:50,
 suffix:"+",
-title:"Learners Mentored"
+title:"Destinations"
 },
 
 {
-icon:<FaCode/>,
-number:10,
+icon:<FaPlaneDeparture />,
+number:5,
 suffix:"+",
-title:"Technology Projects"
+title:"Years Experience"
 },
 
 {
-icon:<FaRobot/>,
-number:0,
-suffix:"",
-title:"AI Research Focus"
+icon:<FaStar />,
+number:99,
+suffix:"%",
+title:"Customer Satisfaction"
 }
 
 ];
 
 
 
+
+
+import TeamCard from "../ui/TeamCard";
+
+
+import { team } from "../../data/team";
+
+
 function About(){
+
+
+const [startCounter,setStartCounter] = useState(false);
+
 
 
 return (
@@ -54,8 +69,6 @@ return (
 id="about"
 
 className="
-
-min-h-screen
 
 px-6
 
@@ -86,23 +99,15 @@ max-w-7xl
 
 mx-auto
 
-
-grid
-
-lg:grid-cols-2
-
-
-gap-16
-
-
-items-center
-
 "
 
 >
 
 
-{/* LEFT CONTENT */}
+
+
+{/* ================= TITLE ================= */}
+
 
 
 <motion.div
@@ -110,13 +115,13 @@ items-center
 
 initial={{
 opacity:0,
-x:-50
+y:30
 }}
 
 
 whileInView={{
 opacity:1,
-x:0
+y:0
 }}
 
 
@@ -125,9 +130,7 @@ once:true
 }}
 
 
-transition={{
-duration:0.7
-}}
+className="text-center max-w-3xl mx-auto"
 
 >
 
@@ -140,9 +143,7 @@ text-4xl
 
 lg:text-5xl
 
-
 font-bold
-
 
 text-gray-900
 
@@ -152,15 +153,33 @@ dark:text-white
 
 >
 
-About
-
-<span className="text-blue-600 dark:text-blue-400">
-
- Me
-
-</span>
+About Apollo Travel
 
 </h2>
+
+
+
+<div
+
+className="
+
+mt-4
+
+text-blue-600
+
+dark:text-blue-400
+
+font-semibold
+
+text-lg
+
+"
+
+>
+
+Your Trusted Travel Partner Since 2019
+
+</div>
 
 
 
@@ -170,76 +189,23 @@ className="
 
 mt-6
 
+text-gray-600
+
+dark:text-gray-300
+
 text-lg
 
 leading-relaxed
 
-
-text-gray-700
-
-dark:text-gray-300
-
 "
 
 >
 
-I am Agmuasie Belay, an Electrical and Computer
-Engineering professional, AI practitioner, software
-developer, and STEM educator from Ethiopia.
-
-</p>
-
-
-
-
-<p
-
-className="
-
-mt-4
-
-leading-relaxed
-
-
-text-gray-600
-
-dark:text-gray-400
-
-"
-
->
-
-My work combines artificial intelligence,
-software engineering, control systems, and
-technology education. I develop web applications,
-machine learning solutions, and intelligent systems
-that solve real-world problems.
-
-</p>
-
-
-
-
-<p
-
-className="
-
-mt-4
-
-leading-relaxed
-
-
-text-gray-600
-
-dark:text-gray-400
-
-"
-
->
-
-Beyond technology development, I am passionate
-about empowering learners through STEM education,
-career development, and accessible digital solutions.
+Apollo Travel Agency has been helping
+individuals, organizations, and corporate
+clients explore the world with confidence
+through reliable travel solutions and
+personalized service.
 
 </p>
 
@@ -253,7 +219,34 @@ career development, and accessible digital solutions.
 
 
 
-{/* ACHIEVEMENTS */}
+
+
+{/* ================= MISSION VISION ================= */}
+
+
+
+{/* ================= MISSION & VISION ================= */}
+
+
+<div
+
+className="
+
+mt-16
+
+grid
+
+lg:grid-cols-2
+
+gap-8
+
+"
+
+>
+
+
+
+{/* Mission Card */}
 
 
 <motion.div
@@ -261,7 +254,7 @@ career development, and accessible digital solutions.
 
 initial={{
 opacity:0,
-x:50
+x:-40
 }}
 
 
@@ -272,7 +265,8 @@ x:0
 
 
 viewport={{
-once:true
+once:true,
+amount:0.3
 }}
 
 
@@ -284,15 +278,371 @@ duration:0.7
 
 className="
 
-grid
+relative
 
-grid-cols-2
+overflow-hidden
 
-gap-5
+p-8
+
+
+rounded-3xl
+
+
+
+bg-white/40
+
+dark:bg-slate-900/40
+
+
+
+backdrop-blur-xl
+
+
+
+border
+
+border-white/40
+
+dark:border-slate-700/50
+
+
+
+shadow-xl
+
+
+
+hover:-translate-y-2
+
+transition-all
+
+duration-300
 
 "
 
 >
+
+
+{/* Gradient Glow */}
+
+<div
+
+className="
+
+absolute
+
+top-0
+
+right-0
+
+w-32
+
+h-32
+
+
+bg-blue-400/20
+
+rounded-full
+
+blur-3xl
+
+"
+
+>
+
+
+
+</div>
+
+
+
+<div className="relative z-10">
+
+
+<h3
+
+className="
+
+text-2xl
+
+font-bold
+
+text-gray-900
+
+dark:text-white
+
+"
+
+>
+
+Our Mission
+
+</h3>
+
+
+
+<p
+
+className="
+
+mt-5
+
+leading-relaxed
+
+text-gray-700
+
+dark:text-gray-300
+
+"
+
+>
+
+To make world-class travel accessible
+through exceptional service, competitive
+prices, and personalized travel solutions
+that create memorable journeys for every
+traveler.
+
+</p>
+
+
+
+</div>
+
+
+</motion.div>
+
+
+
+
+
+
+
+
+
+{/* Vision Card */}
+
+
+<motion.div
+
+
+initial={{
+opacity:0,
+x:40
+}}
+
+
+whileInView={{
+opacity:1,
+x:0
+}}
+
+
+viewport={{
+once:true,
+amount:0.3
+}}
+
+
+transition={{
+duration:0.7
+}}
+
+
+
+className="
+
+relative
+
+overflow-hidden
+
+p-8
+
+
+rounded-3xl
+
+
+
+bg-white/40
+
+dark:bg-slate-900/40
+
+
+
+backdrop-blur-xl
+
+
+
+border
+
+border-white/40
+
+dark:border-slate-700/50
+
+
+
+shadow-xl
+
+
+
+hover:-translate-y-2
+
+transition-all
+
+duration-300
+
+"
+
+>
+
+
+{/* Gradient Glow */}
+
+<div
+
+className="
+
+absolute
+
+bottom-0
+
+left-0
+
+w-32
+
+h-32
+
+
+bg-blue-500/20
+
+rounded-full
+
+blur-3xl
+
+"
+
+>
+
+
+</div>
+
+
+
+
+<div className="relative z-10">
+
+
+<h3
+
+className="
+
+text-2xl
+
+font-bold
+
+text-gray-900
+
+dark:text-white
+
+"
+
+>
+
+Our Vision
+
+</h3>
+
+
+
+<p
+
+className="
+
+mt-5
+
+leading-relaxed
+
+text-gray-700
+
+dark:text-gray-300
+
+"
+
+>
+
+To become East Africa's leading travel
+agency, recognized for innovation,
+reliability, and customer-centered
+services that inspire people to explore
+the world.
+
+</p>
+
+
+
+</div>
+
+
+</motion.div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{/* ================= STATISTICS ================= */}
+
+
+
+<motion.div
+
+
+onViewportEnter={()=>setStartCounter(true)}
+
+
+whileInView={{
+opacity:1,
+y:0
+}}
+
+
+initial={{
+opacity:0,
+y:40
+}}
+
+
+viewport={{
+once:true
+}}
+
+
+
+className="
+
+mt-20
+
+grid
+
+grid-cols-1
+
+sm:grid-cols-2
+
+lg:grid-cols-4
+
+gap-6
+
+"
+
+>
+
 
 
 {
@@ -300,37 +650,20 @@ gap-5
 achievements.map((item,index)=>(
 
 
-<motion.div
-
+<div
 
 key={index}
 
-
-whileHover={{
-y:-8
-}}
-
-
-transition={{
-duration:0.2
-}}
-
-
-
 className="
-
 
 p-6
 
-
 rounded-2xl
-
 
 
 bg-white
 
 dark:bg-slate-950
-
 
 
 border
@@ -340,18 +673,11 @@ border-gray-200
 dark:border-slate-800
 
 
-
 shadow-sm
-
-
 
 hover:border-blue-500
 
-
-
 transition
-
-
 
 "
 
@@ -364,12 +690,11 @@ className="
 
 text-3xl
 
-mb-4
-
-
 text-blue-600
 
 dark:text-blue-400
+
+mb-4
 
 "
 
@@ -381,7 +706,6 @@ dark:text-blue-400
 
 
 
-
 <h3
 
 className="
@@ -389,7 +713,6 @@ className="
 text-3xl
 
 font-bold
-
 
 text-gray-900
 
@@ -399,16 +722,9 @@ dark:text-white
 
 >
 
-
 {
 
-item.title === "AI Research Focus"
-
-?
-
-"AI"
-
-:
+startCounter &&
 
 <Counter
 
@@ -425,14 +741,11 @@ suffix={item.suffix}
 
 
 
-
-
 <p
 
 className="
 
 mt-2
-
 
 text-gray-600
 
@@ -447,9 +760,7 @@ dark:text-gray-400
 </p>
 
 
-
-</motion.div>
-
+</div>
 
 
 ))
@@ -457,8 +768,156 @@ dark:text-gray-400
 }
 
 
+</motion.div>
+
+
+
+
+
+
+
+
+
+{/* ================= TEAM ================= */}
+
+
+
+{/* ================= TEAM ================= */}
+
+
+<motion.div
+
+initial={{
+opacity:0,
+y:40
+}}
+
+whileInView={{
+opacity:1,
+y:0
+}}
+
+viewport={{
+once:true,
+amount:0.3
+}}
+
+className="mt-24"
+
+>
+
+
+<h2
+
+className="
+
+text-4xl
+
+lg:text-5xl
+
+font-bold
+
+text-center
+
+text-gray-900
+
+dark:text-white
+
+"
+
+>
+
+Our Team
+
+</h2>
+
+
+
+
+<p
+
+className="
+
+mt-4
+
+max-w-2xl
+
+mx-auto
+
+text-center
+
+text-gray-600
+
+dark:text-gray-300
+
+text-lg
+
+"
+
+>
+
+Meet the dedicated travel professionals behind
+Apollo Travel, committed to creating smooth,
+memorable, and personalized journeys.
+
+</p>
+
+
+
+
+
+
+<div
+
+className="
+
+mt-12
+
+grid
+
+grid-cols-1
+
+sm:grid-cols-2
+
+lg:grid-cols-4
+
+gap-8
+
+"
+
+>
+
+
+{
+
+team.map((member,index)=>(
+
+
+<TeamCard
+
+key={index}
+
+member={member}
+
+/>
+
+
+))
+
+
+}
+
+
+
+</div>
+
+
 
 </motion.div>
+
+
+
+
 
 
 
@@ -466,6 +925,7 @@ dark:text-gray-400
 
 
 </section>
+
 
 )
 

@@ -5,11 +5,29 @@ import "./index.css";
 
 import App from "./App";
 
-import {ThemeProvider} from "./context/ThemeContext";
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
+import { ThemeProvider } from "./context/ThemeContext";
+
+import {
+BrowserRouter
+} from "react-router-dom";
+
+
+ReactDOM.createRoot(
+document.getElementById("root")
+).render(
+
+<React.StrictMode>
+
+<BrowserRouter>
+
+<ThemeProvider>
+
+<App />
+
+</ThemeProvider>
+
+</BrowserRouter>
+
+</React.StrictMode>
+
 );
